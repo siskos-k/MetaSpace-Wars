@@ -1,43 +1,12 @@
-# Spaceinvaders
+# Welcome to MetaSpace Wars
 
-Javascript version of the retro game of Spaceinvaders. The game is build with [Phaser V3](https://github.com/photonstorm/phaser) Javascript library.
+This project is a combination of timeless arcade classic games
+with the ground-breaking capabilities that NFTs offer.
 
-**Play it here: [demo](https://bit33.io/spaceinvaders/)**
+This game aims to be both an entertaining nostalgic reincarnation
+of the **arcade game era** and an opportunity for crypto entusiasts
+to experience on their own the application of _NFT technologies in gaming_
 
-
-
-## Build this project
-
-Make sure you have [git](https://git-scm.com/downloads) installed and go on the command line to the directory where you like to download the source code.
-
-**1) Download**
-```
-git clone https://github.com/bit33/spaceinvaders.git
-```
-
-**2) Change directory**
-```
-cd spaceinvaders
-```
-
-**3) Download dependecies**
-```
-npm install
-```
-
-**4) Build**
-```
-npm run build
-```
-
-*(The warnings are not errors)*
-
-**5) Run**
-```
-npm run start
-```
-
-In your web brower you can now play the game:
-```
-http://localhost:8000/
-```
+Developed by
+-eleft
+-siskos
