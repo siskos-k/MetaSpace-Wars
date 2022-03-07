@@ -8,6 +8,7 @@ export default class LoaderScene extends Scene {
   }
 
   preload () {
+    console.log("you are now on the LOADER SCENE");
     this.load.spritesheet('graphic', 'assets/spaceinvaders.png', {
       frameWidth: 13*4,
       frameHeight: 9*4
@@ -16,15 +17,21 @@ export default class LoaderScene extends Scene {
       frameWidth: 3*4,
       frameHeight: 27//7*4
     });
+    this.load.spritesheet('background_animated', './asset/background_spritesheer.png', {
+      frameWidth: 800,
+      frameHeight: 600,
+    })
 
     this.load.image('bullet', 'assets/bullet.png');
+    this.load.image('title', 'assets/title.png');
+    this.load.image('background', 'assets/background.png');
     this.load.audio('explosion', 'assets/audio/explosion.wav');
     this.load.audio('shoot', 'assets/audio/shoot.wav');
   }
 
   create () {
     this.animFactory();
-    this.scene.start('GameScene');
+    this.scene.start('MainMenu');
   }
 
   animFactory() {

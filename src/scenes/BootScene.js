@@ -8,7 +8,7 @@ export default class BootScene extends Scene {
   }
 
   preload () {
-    console.log("(C)bit33.io\nSpaceinvaders 0.0.4");
+    console.log("You are now in the BOOT SCENE");
   }
 
   create () {

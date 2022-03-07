@@ -2,6 +2,7 @@ import 'phaser';
 import BootScene from './scenes/BootScene';
 import LoaderScene from './scenes/LoaderScene';
 import GameScene from './scenes/GameScene';
+import MainMenu from './scenes/MainMenu';
 
 var config = {
   type: Phaser.AUTO,
@@ -15,7 +16,7 @@ var config = {
       gravity: { y: 0  }
     }
   },
-  scene: [BootScene, LoaderScene, GameScene]
+  scene: [BootScene, LoaderScene, MainMenu, GameScene]
 };
 
 // Bootstrap game

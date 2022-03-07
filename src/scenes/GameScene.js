@@ -11,9 +11,13 @@ export default class GameScene extends Scene {
   constructor(config) {
     super({ key: 'GameScene' });
   }
-
+ 
   create () {
+    let sizeX = this.game.canvas.width;
+    let sizeY = this.game.canvas.height;
+
     this.createText();
+    this.add.image(sizeX/2,sizeY/2, 'background')
 
     this.level = 1;
     this.sound.add('explosion');
@@ -50,7 +54,7 @@ export default class GameScene extends Scene {
     const sizeY = this.game.canvas.height;
     const sizeX = this.game.canvas.width;
     const textConfig =
-      { fontSize: '44px',  fontFamily: 'Pixel', fill: "#ffffff" };
+      { fontSize: '44px',  fontFamily: 'Pixel', fill: "#ffffff" }; //text style
 
     this.gameoverText = this.add.text(sizeX / 2, sizeY / 2 - 100,
       'GAME OVER', textConfig)
