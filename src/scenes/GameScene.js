@@ -5,6 +5,7 @@ import Bullet from '../Bullet';
 import AlienManager from '../AlienManager';
 import ScoreManager from '../ScoreManager';
 import rocketFactory from '../RocketFactory';
+import BackGround from '../BackGround';
 
 export default class GameScene extends Scene {
 
@@ -17,8 +18,19 @@ export default class GameScene extends Scene {
     let sizeY = this.game.canvas.height;
 
     this.createText();
-    this.add.image(sizeX/2,sizeY/2, 'background')
+    //this.add.image(sizeX/2,sizeY/2, 'background')
 
+      //BACKGROUND ANIMATED
+    this.backgound_animated = this.add.sprite(sizeX/2,sizeY/2, 'background_animated');
+
+    this.anims.create({
+      key: "background_anim",
+      frames: this.anims.generateFrameNumbers('background_animated', { start: 0, end: 47} ),
+      frameRate: 24,
+      repeat: -1
+    });
+    this.backgound_animated.play("background_anim");
+    
     this.level = 1;
     this.sound.add('explosion');
     this.sound.add('shoot');

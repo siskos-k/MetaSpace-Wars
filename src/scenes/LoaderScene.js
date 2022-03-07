@@ -1,5 +1,6 @@
 import { Scene } from 'phaser';
 import { GC } from '../GC';
+// import{BackGround} from '../BackGround.js'
 
 export default class LoaderScene extends Scene {
 
@@ -17,12 +18,13 @@ export default class LoaderScene extends Scene {
       frameWidth: 3*4,
       frameHeight: 27//7*4
     });
-    this.load.spritesheet('background_animated', './asset/background_spritesheer.png', {
+    this.load.spritesheet('background_animated', 'assets/THISISATEST.png', {
       frameWidth: 800,
-      frameHeight: 600,
-    })
+      frameHeight: 800,
+    });
 
     this.load.image('bullet', 'assets/bullet.png');
+    this.load.image('bgintro', 'assets/bgintro.jpg');
     this.load.image('title', 'assets/title.png');
     this.load.image('background', 'assets/background.png');
     this.load.audio('explosion', 'assets/audio/explosion.wav');
@@ -46,6 +48,14 @@ export default class LoaderScene extends Scene {
       repeat: 1
     });
 
+    // this.anims.create({
+    //   key: 'Background',
+    //   frames: this.anims.generateFrameNames('start-moving',
+      
+    //   ),
+    //   repeat: true,
+    // //   frameRate: 24
+    // });
     this.anims.create({
       key: 'rocket',
       frames: this.anims.generateFrameNumbers('graphic',
@@ -61,6 +71,8 @@ export default class LoaderScene extends Scene {
       repeat: -1
     });
   }
+
+
 
   alienAnimFactory(alienType) {
     this.anims.create({

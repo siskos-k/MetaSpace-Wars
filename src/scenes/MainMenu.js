@@ -24,7 +24,7 @@ export default class MainMenu extends Scene {
     this.input.on("pointerdown", () => this.scene.start("GameScene"));
     // this.goPlay();
     //BACKGROUND
-    this.add.image(sizeX / 2, sizeY / 2, "background");
+    this.add.image(sizeX / 2, sizeY / 2, "bgintro");
 
     //TITLE
     this.add.image(sizeX - sizeX / 2, sizeY - (sizeY * 2) / 3, "title");
