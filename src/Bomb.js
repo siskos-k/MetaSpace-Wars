@@ -8,6 +8,7 @@ export default class Bomb extends Phaser.Physics.Arcade.Sprite {
   }
 
   throw(x, y) {
+    this.scene.sound.play('shoot');
     this.enableBody(true, x, y, true, true);
     this.setCollideWorldBounds(true);
     this.body.onWorldBounds = true;
