@@ -9,6 +9,7 @@ export default class BootScene extends Scene {
 
   preload () {
     console.log("You are now in the BOOT SCENE");
+    
   }
 
   create () {

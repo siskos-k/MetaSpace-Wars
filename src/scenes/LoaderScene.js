@@ -1,6 +1,6 @@
 import { Scene } from 'phaser';
 import { GC } from '../GC';
-// import{BackGround} from '../BackGround.js'
+//import{BackGround} from '../BackGround.js'
 
 export default class LoaderScene extends Scene {
 
@@ -9,6 +9,10 @@ export default class LoaderScene extends Scene {
   }
 
   preload () {
+    // this.load.baseURL = 'https://streammentor.com/wp-content/uploads/2020/12/pogchamp-twitch-own3d.png';
+    // this.load.crossOrigin = 'anonymous';
+    // this.load.image('pog',sessionStorage);
+
     console.log("you are now on the LOADER SCENE");
     this.load.spritesheet('graphic', 'assets/spaceinvaders.png', {
       frameWidth: 13*4,
@@ -27,8 +31,24 @@ export default class LoaderScene extends Scene {
     this.load.image('bgintro', 'assets/bgintro.jpg');
     this.load.image('title', 'assets/title.png');
     this.load.image('background', 'assets/background.png');
+
+    this.load.image('playButton', 'assets/PLAYBUTTON.png');
+    this.load.image('shopButton', 'assets/ASSET_STORE.png');
+    
+    this.load.image('mainship', 'assets/main_ship.png');
+    this.load.image('blankship', 'assets/blank_main_ship.png');
+
+    this.load.image('placeholder', 'assets/placeHolder.png');
+    
+    this.load.image('quasar', 'assets/QUASAR.png');
+    this.load.image('skinselect', 'assets/skinselect.png');
+    
+    // this.load.image('pog', "https://streammentor.com/wp-content/uploads/2020/12/pogchamp-twitch-own3d.png");
+
     this.load.audio('explosion', 'assets/audio/explosion.wav');
     this.load.audio('shoot', 'assets/audio/shoot.wav');
+
+    
   }
 
   create () {

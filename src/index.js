@@ -3,20 +3,24 @@ import BootScene from './scenes/BootScene';
 import LoaderScene from './scenes/LoaderScene';
 import GameScene from './scenes/GameScene';
 import MainMenu from './scenes/MainMenu';
+import ShopTest from './scenes/ShopTest';
+import SkinSelect from './scenes/SkinSelect';
+
 
 var config = {
   type: Phaser.AUTO,
   parent: 'phaser-game',
   width: 800,
   height: 600,
-  backgroundColor: "#dbcf8b",
+  backgroundColor: "black",
   physics: {
     default: 'arcade',
     arcade: {
       gravity: { y: 0  }
     }
   },
-  scene: [BootScene, LoaderScene, MainMenu, GameScene]
+  scene: [BootScene, LoaderScene, MainMenu, GameScene, ShopTest, SkinSelect],
+  skinSelected: true
 };
 
 // Bootstrap game
@@ -27,6 +31,7 @@ window.onload = function() {
   resizeGame();
   window.addEventListener("resize", resizeGame);
 }
+
 
 // Cool resizing function that keeps aspect ratio
 function resizeGame() {

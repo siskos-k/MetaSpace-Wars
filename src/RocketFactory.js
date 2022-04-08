@@ -2,9 +2,16 @@ import { GC } from './GC';
 
 class RocketFactory {
   create(scene) {
-    let rocket = scene.physics.add.sprite(300, 500, "graphic", GC.ROCKET)
-      .setImmovable(true);
+    
+    let sizeX = scene.game.canvas.width;
+    let sizeY = scene.game.canvas.height;
 
+    // let Gameskin = scene.add.image(sizeX/2, sizeY - sizeY/6, scene.game.config.skinSelected ? "blankship" : "mainship");
+    // Gameskin.setScale(0.1);
+
+    
+    let rocket = scene.physics.add.sprite(400, 500, (scene.game.config.skinSelected ? "blankship" : "mainship"))
+      .setImmovable(true);
     rocket.setCollideWorldBounds(true);
     rocket.body.onWorldBounds = true;
     rocket.body.world.on('worldbounds', function(body) {
@@ -13,7 +20,7 @@ class RocketFactory {
       }
     }, rocket);
 
-    return rocket;
+    return rocket.setScale(0.1);
   }
 }
 

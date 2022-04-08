@@ -17,6 +17,11 @@ export default class GameScene extends Scene {
     let sizeX = this.game.canvas.width;
     let sizeY = this.game.canvas.height;
 
+    var keyObj = this.input.keyboard.addKey('W');
+    keyObj.on('up', () => this.scene.start("MainMenu"));
+
+
+    
     this.createText();
     //this.add.image(sizeX/2,sizeY/2, 'background')
 
@@ -37,6 +42,7 @@ export default class GameScene extends Scene {
     this.cursors = this.input.keyboard.createCursorKeys();
 
     this.rocket = rocketFactory.create(this);
+    
     this.bullets = this.physics.add.group({
       maxSize: 20,
       classType: Bullet,
@@ -60,6 +66,8 @@ export default class GameScene extends Scene {
     this.scoreManager = new ScoreManager(this);
     this.scoreManager.print();
     this.state = STATE.RUN;
+
+    
   }
 
   createText() {
@@ -107,6 +115,7 @@ export default class GameScene extends Scene {
     if (this.state == STATE.RUN) {
       if (this.cursors.left.isDown) {
         this.rocket.setVelocityX(-160);
+
       } else if (this.cursors.right.isDown) {
         this.rocket.setVelocityX(160);
       } else {
