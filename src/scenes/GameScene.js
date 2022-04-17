@@ -44,7 +44,7 @@ export default class GameScene extends Scene {
     this.rocket = rocketFactory.create(this);
     
     this.bullets = this.physics.add.group({
-      maxSize: 20,
+      maxSize: 1,
       classType: Bullet,
       runChildUpdate: true
     });
@@ -80,6 +80,7 @@ export default class GameScene extends Scene {
       'GAME OVER', textConfig)
       .setVisible(false)
       .setDepth(1);
+      
     this.gameoverText.setOrigin(0.5);
 
     this.beginText = this.add.text(sizeX / 2, (sizeY / 2) - 60,
@@ -129,8 +130,9 @@ export default class GameScene extends Scene {
   handleKey(e){
     switch(this.state) {
       case STATE.RUN:
-        if(e.code == "Space") {
+        if(e.code == "Space" /* && !onCoolDown*/) {
            this.fireBullet();
+           //startCoolDown
         }
         break;
       case STATE.READY:
@@ -182,7 +184,7 @@ export default class GameScene extends Scene {
   gameover() {
     this.state = STATE.GAMEOVER;
     this.sound.play('explosion');
-    this.rocket.play('explosion');
+    //this.rocket.play('explosion');
     this.time.removeAllEvents();
     this.alienManager.gameover();
     this.bullets.getChildren().forEach(
@@ -210,12 +212,13 @@ export default class GameScene extends Scene {
     this.level = 1;
     this.scoreManager.setHiScore();
 
-    this.rocket.play('rocket');
+    //this.rocket.play('rocket');
     this.beginText.setVisible(false);
     this.gameoverText.setVisible(false);
     this.bombs.getChildren().forEach(
       function(bomb) { bomb.deactivate(); }
     );
     this.restart();
+    
   }
 }
