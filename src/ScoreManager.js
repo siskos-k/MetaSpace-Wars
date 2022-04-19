@@ -23,8 +23,12 @@ export default class ScoreManager {
   }
 
   point() {
-    this.score++;
+    this.score+=10;
     this.print();
+  }
+
+  levelpassed(){
+    this.score+=100;
   }
 
   print() {

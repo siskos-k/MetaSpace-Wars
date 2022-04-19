@@ -1,6 +1,7 @@
 import 'phaser';
 import { Alien1, Alien2, Alien3 } from './Alien';
 import { GC, STATE } from './GC';
+import ScoreManager from './ScoreManager';
 
 function deactivateAlien(alien) {
    alien.deactivate();
@@ -13,7 +14,6 @@ export default class AlienManager {
 
     this.maxY = scene.game.canvas.height;
     this.aliensStartVelocity = 40;
-
     this.aliens1 = scene.physics.add.group({
       maxSize: 26,
       classType: Alien1,
@@ -43,7 +43,9 @@ export default class AlienManager {
   restart(level) {
     this.level = level;
     this.forAllAliens(deactivateAlien);
-    this.init(level);
+    
+    callback: this.init(level);
+
   }
 
   init(level) {
@@ -86,7 +88,7 @@ export default class AlienManager {
   testAllAliensDead() {
     return this.countAliensDetailed().all === 0;
   }
-
+  
   getRandomAlien() {
     const count = this.countAliensDetailed();
     if (count.all > 0) {

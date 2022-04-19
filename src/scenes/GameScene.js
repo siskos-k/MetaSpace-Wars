@@ -5,7 +5,7 @@ import Bullet from '../Bullet';
 import AlienManager from '../AlienManager';
 import ScoreManager from '../ScoreManager';
 import rocketFactory from '../RocketFactory';
-import BackGround from '../BackGround';
+
 
 export default class GameScene extends Scene {
 
@@ -23,8 +23,6 @@ export default class GameScene extends Scene {
 
     
     this.createText();
-    //this.add.image(sizeX/2,sizeY/2, 'background')
-
       //BACKGROUND ANIMATED
     this.backgound_animated = this.add.sprite(sizeX/2,sizeY/2, 'background_animated');
 
@@ -39,12 +37,13 @@ export default class GameScene extends Scene {
     this.level = 1;
     this.sound.add('explosion');
     this.sound.add('shoot');
+
     this.cursors = this.input.keyboard.createCursorKeys();
 
     this.rocket = rocketFactory.create(this);
     
     this.bullets = this.physics.add.group({
-      maxSize: 1,
+      maxSize: 100,
       classType: Bullet,
       runChildUpdate: true
     });
@@ -54,6 +53,7 @@ export default class GameScene extends Scene {
       classType: Bomb,
       runChildUpdate: true
     });
+
     this.alienManager = new AlienManager(this, this.level);
 
     this.physics.world.on('worldbounds', this.onWorldbounds, this);
@@ -88,6 +88,14 @@ export default class GameScene extends Scene {
       .setVisible(false)
       .setDepth(1);
     this.beginText.setOrigin(0.5);
+
+    this.levelCompleteText = this.add.text(sizeX / 2, sizeY / 2,
+      'LEVEL COMPLETE', textConfig)
+      .setVisible(false)
+      .setDepth(1);
+      
+    this.gameoverText.setOrigin(0.5);
+    this.levelCompleteText.setOrigin(0.5);
   }
 
   onWorldbounds(body) {
@@ -152,9 +160,14 @@ export default class GameScene extends Scene {
     if (this.state == STATE.RUN && alien.active && bullet.active) {
       bullet.deactivate();
       alien.explode();
-      this.scoreManager.point();
+      this.scoreManager.point(); //+10
       if (this.alienManager.testAllAliensDead()) {
-        this.levelUp();
+        this.levelCompleteText.setVisible(true);
+        this.time.addEvent({delay: 3000,
+        callback: function(){this.levelUp()},
+        callbackScope: this
+        })
+        
       }
     }
   }
@@ -172,12 +185,14 @@ export default class GameScene extends Scene {
   }
 
   levelUp() {
+    this.levelCompleteText.setVisible(false);
     this.level++;
-    this.time.addEvent(
-      { delay: 2000, callback: this.restart(), callbackScope: this});﻿﻿
+    this.scoreManager.levelpassed();
+    this.restart();
   }
 
   restart() {
+    
     this.alienManager.restart(this.level);
   }
 

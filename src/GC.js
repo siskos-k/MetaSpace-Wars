@@ -9,7 +9,8 @@ var GC = {
 var STATE = {
   READY:    0,
   RUN:      1,
-  GAMEOVER: 2
+  COMPLETE: 2,
+  GAMEOVER: 3
 }
 
 export { GC,  STATE };

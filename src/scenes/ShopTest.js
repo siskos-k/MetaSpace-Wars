@@ -6,8 +6,9 @@ export default class ShopTest extends Scene {
     super({ key: 'ShopTest' });
   }
 
-  preload () {
-    ///console.log("You are now in the SHOP SCENE");
+  preload (config) {
+    ///console.log("You are now in the SHOP SCENE");\\
+    this.load.image('sukasuka-chtholly', 'http://labs.phaser.io/assets/pics/sukasuka-chtholly.png');
   }
 
   create () {
@@ -22,7 +23,9 @@ export default class ShopTest extends Scene {
 
     this.add.image(sizeX/2, sizeY/3, 'quasar');
 
-    
+  
+  
+    this.add.image(400, 300, 'sukasuka-chtholly');
     //this.add.image(sizeX/2, sizeY/3, 'pog');
     console.log("You are now in the SHOP SCENE");
 
