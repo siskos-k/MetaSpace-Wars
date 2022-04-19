@@ -163,7 +163,7 @@ export default class GameScene extends Scene {
       this.scoreManager.point(); //+10
       if (this.alienManager.testAllAliensDead()) {
         this.levelCompleteText.setVisible(true);
-        this.time.addEvent({delay: 3000,
+        this.time.addEvent({delay: 5000,
         callback: function(){this.levelUp()},
         callbackScope: this
         })

@@ -29,6 +29,7 @@ export default class ScoreManager {
 
   levelpassed(){
     this.score+=100;
+    this.wave++;
   }
 
   print() {

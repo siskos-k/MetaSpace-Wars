@@ -1,6 +1,6 @@
 import { Scene } from "phaser";
 import GameScene from "./GameScene";
-
+import ShopTest from "./ShopTest";
 export default class MainMenu extends Scene {
   constructor(config) {
     super({ key: "MainMenu" });
