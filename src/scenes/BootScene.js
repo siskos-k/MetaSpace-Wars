@@ -1,5 +1,4 @@
 import { Scene } from 'phaser';
-import LoaderScene from './LoaderScene';
 
 export default class BootScene extends Scene {
 
@@ -7,9 +6,7 @@ export default class BootScene extends Scene {
     super({ key: 'BootScene' });
   }
 
-  preload () {
-    console.log("You are now in the BOOT SCENE");
-    
+  preload() {
   }
 
   create () {

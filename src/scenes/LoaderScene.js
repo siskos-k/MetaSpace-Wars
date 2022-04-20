@@ -1,6 +1,5 @@
 import { Scene } from 'phaser';
 import { GC } from '../GC';
-//import{BackGround} from '../BackGround.js'
 
 export default class LoaderScene extends Scene {
 
@@ -8,12 +7,20 @@ export default class LoaderScene extends Scene {
     super({ key: 'LoaderScene' });
   }
 
-  preload () {
-    // this.load.baseURL = 'https://streammentor.com/wp-content/uploads/2020/12/pogchamp-twitch-own3d.png';
-    // this.load.crossOrigin = 'anonymous';
-    // this.load.image('pog',sessionStorage);
+  init() {
+    // this.nftArray = this.game.config.nftArray;
+    let skinsArray = ['mainship'];
+    this.nftArray = this.registry.get("nftArray");
+    this.nftArray.forEach(nft => {
+      skinsArray.push(nft.name);
+    });
 
-    console.log("you are now on the LOADER SCENE");
+
+    this.registry.set("skinsArray", skinsArray);
+    this.registry.set("selectedSkin", 0);
+  }
+
+  preload () {
     this.load.spritesheet('graphic', 'assets/spaceinvaders.png', {
       frameWidth: 13*4,
       frameHeight: 9*4
@@ -42,13 +49,16 @@ export default class LoaderScene extends Scene {
     
     this.load.image('quasar', 'assets/QUASAR.png');
     this.load.image('skinselect', 'assets/skinselect.png');
-    
-    // this.load.image('pog', "https://streammentor.com/wp-content/uploads/2020/12/pogchamp-twitch-own3d.png");
 
     this.load.audio('explosion', 'assets/audio/explosion.wav');
     this.load.audio('shoot', 'assets/audio/shoot.wav');
 
-    
+    // preload all skins here as images
+    this.nftArray.forEach(nft => {
+      this.load.image(nft.name, nft.imgURL);
+    });
+
+    console.log("Loaded skins");
   }
 
   create () {
@@ -68,14 +78,6 @@ export default class LoaderScene extends Scene {
       repeat: 1
     });
 
-    // this.anims.create({
-    //   key: 'Background',
-    //   frames: this.anims.generateFrameNames('start-moving',
-      
-    //   ),
-    //   repeat: true,
-    // //   frameRate: 24
-    // });
     this.anims.create({
       key: 'rocket',
       frames: this.anims.generateFrameNumbers('graphic',
@@ -91,8 +93,6 @@ export default class LoaderScene extends Scene {
       repeat: -1
     });
   }
-
-
 
   alienAnimFactory(alienType) {
     this.anims.create({

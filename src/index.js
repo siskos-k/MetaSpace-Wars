@@ -3,11 +3,12 @@ import BootScene from './scenes/BootScene';
 import LoaderScene from './scenes/LoaderScene';
 import GameScene from './scenes/GameScene';
 import MainMenu from './scenes/MainMenu';
-import ShopTest from './scenes/ShopTest';
 import SkinSelect from './scenes/SkinSelect';
+import { getNFTArray } from './getNFTArray';
 
+const publicKey = "4JRPncrtwtHLMfEdCqG2kzRNL7zz1h8yxr5f78gYmtF9";
 
-var config = {
+let config = {
   type: Phaser.AUTO,
   parent: 'phaser-game',
   width: 800,
@@ -16,20 +17,22 @@ var config = {
   physics: {
     default: 'arcade',
     arcade: {
-      gravity: { y: 0  }
+      gravity: { y: 0 }
     }
   },
-  scene: [BootScene, LoaderScene, MainMenu, GameScene, ShopTest, SkinSelect],
-  skinSelected: true
+  scene: [BootScene, LoaderScene, MainMenu, GameScene, SkinSelect],
 };
 
 // Bootstrap game
 var game;
-window.onload = function() {
-  game = new Phaser.Game(config);
-  window.focus();
-  resizeGame();
-  window.addEventListener("resize", resizeGame);
+window.onload = function () {
+  getNFTArray(publicKey).then((nftArray) => {
+    game = new Phaser.Game(config);
+    game.registry.set("nftArray", nftArray);
+    window.focus();
+    resizeGame();
+    window.addEventListener("resize", resizeGame);
+  });
 }
 
 
@@ -43,7 +46,7 @@ function resizeGame() {
   if (windowRatio < gameRatio) {
     canvas.style.width = windowWidth + "px";
     canvas.style.height = (windowWidth / gameRatio) + "px";
-  } else{
+  } else {
     canvas.style.width = (windowHeight * gameRatio) + "px";
     canvas.style.height = windowHeight + "px";
   }
