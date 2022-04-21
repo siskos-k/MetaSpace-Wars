@@ -43,7 +43,7 @@ export default class GameScene extends Scene {
     this.rocket = rocketFactory.create(this);
     
     this.bullets = this.physics.add.group({
-      maxSize: 100,
+      maxSize: 1,
       classType: Bullet,
       runChildUpdate: true
     });
