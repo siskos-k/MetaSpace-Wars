@@ -6,8 +6,6 @@ import MainMenu from './scenes/MainMenu';
 import SkinSelect from './scenes/SkinSelect';
 import { getNFTArray } from './getNFTArray';
 
-const publicKey = "4JRPncrtwtHLMfEdCqG2kzRNL7zz1h8yxr5f78gYmtF9";
-
 let config = {
   type: Phaser.AUTO,
   parent: 'phaser-game',
@@ -23,12 +21,47 @@ let config = {
   scene: [BootScene, LoaderScene, MainMenu, GameScene, SkinSelect],
 };
 
+
 // Bootstrap game
 var game;
 window.onload = function () {
+  // add button handler
+  document.getElementById("wallet_button").addEventListener("click", onWalletButtonClick)
+}
+
+async function onWalletButtonClick() {
+  let connectedWallet = false;
+  let publicKey = "";
+  // check if there is a phantom wallet
+  try {
+    const { solana } = window;
+    if (solana) {
+      if (solana.isPhantom) {
+        // attempt to connect
+        console.log("Phantom wallet found!");
+        const response = await solana.connect();
+        connectedWallet = true;
+        publicKey = response.publicKey.toString();
+      }
+    } else {
+      alert("Solana wallet not found! Get a phantom wallet");
+    }
+  } catch (error) {
+    console.log(error)
+  }
+
+  if (!connectedWallet) {
+    return;
+  }
+
+  document.getElementById("wallet_button").style.visibility = "hidden";
+  document.getElementById("button_container").style.visibility = "hidden";
+  
+  // if connected: start game with publickey
   getNFTArray(publicKey).then((nftArray) => {
     game = new Phaser.Game(config);
     game.registry.set("nftArray", nftArray);
+    game.registry.set("publicKey", publicKey);
     window.focus();
     resizeGame();
     window.addEventListener("resize", resizeGame);

@@ -26,6 +26,8 @@ const getNFTArray = async (publicKey) => {
         };
 
         // TODO: filter array here based on skins that include our own metadata only
+        // make a server to verify skin eligibility on game time :))))))
+        // this way we can simply disallow anyone from making their own skins
         // if (metadata.game !== "metaspacewars") {
         //     continue;
         // }
