@@ -10,7 +10,7 @@ class RocketFactory {
     // Gameskin.setScale(0.1);
 
     
-    let rocket = scene.physics.add.sprite(400, 500, (scene.game.config.skinSelected ? "blankship" : "mainship"))
+    let rocket = scene.physics.add.sprite(400, 500, (scene.registry.get("skinsArray")[scene.registry.get("selectedSkin")]))
       .setImmovable(true);
 
     rocket.setCollideWorldBounds(true);
