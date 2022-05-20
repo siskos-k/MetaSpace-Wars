@@ -20,13 +20,13 @@ export default class LoaderScene extends Scene {
     this.registry.set("selectedSkin", 0);
   }
 
-  preload () {
+  preload() {
     this.load.spritesheet('graphic', 'assets/spaceinvaders.png', {
-      frameWidth: 13*4,
-      frameHeight: 9*4
+      frameWidth: 13 * 4,
+      frameHeight: 9 * 4
     });
     this.load.spritesheet('bomb', 'assets/bomb.png', {
-      frameWidth: 3*4,
+      frameWidth: 3 * 4,
       frameHeight: 27//7*4
     });
     this.load.spritesheet('background_animated', 'assets/THISISATEST.png', {
@@ -41,12 +41,12 @@ export default class LoaderScene extends Scene {
 
     this.load.image('playButton', 'assets/PLAYBUTTON.png');
     this.load.image('shopButton', 'assets/ASSET_STORE.png');
-    
+    this.load.image('leaderboard', 'assets/LEADER.png');
     this.load.image('mainship', 'assets/main_ship.png');
     this.load.image('blankship', 'assets/blank_main_ship.png');
 
     this.load.image('placeholder', 'assets/placeHolder.png');
-    
+
     this.load.image('quasar', 'assets/QUASAR.png');
     this.load.image('getskins', 'assets/skinselect.png');
     this.load.image('skinselect', 'assets/getskin.png');
@@ -64,7 +64,7 @@ export default class LoaderScene extends Scene {
     console.log("Loaded skins");
   }
 
-  create () {
+  create() {
     this.animFactory();
     this.scene.start('MainMenu');
   }
@@ -76,7 +76,7 @@ export default class LoaderScene extends Scene {
 
     this.anims.create({
       key: 'explosion',
-      frames: this.anims.generateFrameNumbers('graphic', {start: 7, end: 7 }),
+      frames: this.anims.generateFrameNumbers('graphic', { start: 7, end: 7 }),
       frameRate: 1,
       repeat: 1
     });
@@ -84,14 +84,14 @@ export default class LoaderScene extends Scene {
     this.anims.create({
       key: 'rocket',
       frames: this.anims.generateFrameNumbers('graphic',
-        {start: GC.ROCKET, end: GC.ROCKET }),
+        { start: GC.ROCKET, end: GC.ROCKET }),
       frameRate: 0,
       repeat: 0
     });
 
     this.anims.create({
       key: 'bomb',
-      frames: this.anims.generateFrameNumbers('bomb', {start: 0, end: 1 }),
+      frames: this.anims.generateFrameNumbers('bomb', { start: 0, end: 1 }),
       frameRate: 6,
       repeat: -1
     });
@@ -99,11 +99,11 @@ export default class LoaderScene extends Scene {
 
   alienAnimFactory(alienType) {
     this.anims.create({
-        key: 'alien' + alienType,
-        frames: this.anims.generateFrameNumbers('graphic',
-          { start: alienType, end: alienType + 1 }),
-        frameRate: 2.5,
-        repeat: -1
+      key: 'alien' + alienType,
+      frames: this.anims.generateFrameNumbers('graphic',
+        { start: alienType, end: alienType + 1 }),
+      frameRate: 2.5,
+      repeat: -1
     });
   }
 }
