@@ -16,6 +16,6 @@ export default class Bomb extends Phaser.Physics.Arcade.Sprite {
   }
 
   deactivate() {
-    this.disableBody (true, true);
+    this.disableBody(true, true);
   }
 }

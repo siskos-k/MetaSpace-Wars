@@ -43,7 +43,7 @@ export default class SkinSelect extends Scene {
           this.selectedSkin = 0;
         }
         this.registry.set("selectedSkin", this.selectedSkin);
-        current_image = this.add.image(400, 400, this.skinsArray[this.selectedSkin]).setDisplaySize(80, 80);;
+        current_image = this.add.image(400, 400, this.skinsArray[this.selectedSkin]).setDisplaySize(120, 120);;
         current_image.setVisible(true);
       }
     )
@@ -58,7 +58,7 @@ export default class SkinSelect extends Scene {
           console.log(this.selectedSkin);
         }
         this.registry.set("selectedSkin", this.selectedSkin);
-        current_image = this.add.image(400, 400, this.skinsArray[this.selectedSkin]).setDisplaySize(80, 80);;
+        current_image = this.add.image(400, 400, this.skinsArray[this.selectedSkin]).setDisplaySize(120, 120);;
         current_image.setVisible(true);
       }
     )
