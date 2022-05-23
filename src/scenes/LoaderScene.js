@@ -8,7 +8,7 @@ export default class LoaderScene extends Scene {
   }
 
   init() {
-    // this.nftArray = this.game.config.nftArray;
+    // this.nftArray = this.game.config.nftArray;\
     let skinsArray = ['mainship'];
     this.nftArray = this.registry.get("nftArray");
     this.nftArray.forEach(nft => {
@@ -20,11 +20,43 @@ export default class LoaderScene extends Scene {
     this.registry.set("selectedSkin", 0);
   }
 
+  startAnim() {
+    let sizeY = this.game.canvas.height;
+    let sizeX = this.game.canvas.width;
+
+
+    this.loadingGIF = this.add.sprite(sizeX / 2, sizeY / 2, 'loadingGIF');
+
+    this.anims.create({
+      key: "Loading",
+      frames: this.anims.generateFrameNumbers('loadingGIF', { start: 1, end: 170 }),
+      frameRate: 20,
+      repeat: -1
+    });
+
+    this.loadingGIF.play("Loading");
+  }
+
   preload() {
+    console.log("this is the PRELOAD scene");
+    let sizeY = this.game.canvas.height;
+    let sizeX = this.game.canvas.width;
+
+    //this.MainMenuBg = this.add.sprite(sizeX / 2, sizeY / 2, 'MainMenuBg');
+
+    // this.anims.create({
+    //   key: "MainMenu",
+    //   frames: this.anims.generateFrameNumbers('MainMenuBg', { start: 1, end: 480 }),
+    //   frameRate: 50,
+    //   repeat: -1
+    // });
+    // this.MainMenuBg.play("MainMenu");
+
     this.load.spritesheet('graphic', 'assets/spaceinvaders.png', {
       frameWidth: 13 * 4,
       frameHeight: 9 * 4
     });
+
     this.load.spritesheet('bomb', 'assets/bomb.png', {
       frameWidth: 3 * 4,
       frameHeight: 27//7*4
@@ -34,10 +66,12 @@ export default class LoaderScene extends Scene {
       frameHeight: 800,
     });
 
+
+
     this.load.image('bullet', 'assets/bullet.png');
     this.load.image('bgintro', 'assets/bgintro.jpg');
     this.load.image('title', 'assets/title.png');
-    this.load.image('background', 'assets/background.png');
+    // this.load.image('background', 'assets/background.png');
 
     this.load.image('playButton', 'assets/PLAYBUTTON.png');
     this.load.image('shopButton', 'assets/ASSET_STORE.png');
@@ -62,9 +96,25 @@ export default class LoaderScene extends Scene {
     });
 
     console.log("Loaded skins");
+
+    // this.startAnim();
+    console.log("its supposed to be running");
   }
 
   create() {
+    let sizeY = this.game.canvas.height;
+    let sizeX = this.game.canvas.width;
+    // this.loadingGIF = this.add.sprite(sizeX / 2, sizeY / 2, 'loadingGIF');
+
+    // this.anims.create({
+    //   key: "Loading",
+    //   frames: this.anims.generateFrameNumbers('loadingGIF', { start: 1, end: 170 }),
+    //   frameRate: 20,
+    //   repeat: -1
+    // });
+
+    // this.loadingGIF.play("Loading");
+
     this.animFactory();
     this.scene.start('MainMenu');
   }

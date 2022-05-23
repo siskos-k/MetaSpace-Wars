@@ -6,6 +6,7 @@ export default class MainMenu extends Scene {
   }
 
   preload() {
+    console.log("this is the main menu");
   }
 
   init() {
@@ -27,7 +28,17 @@ export default class MainMenu extends Scene {
     // this.goPlay();
 
     //BACKGROUND
-    this.add.image(sizeX / 2, sizeY / 2, "bgintro");
+    //this.add.image(sizeX / 2, sizeY / 2, "bgintro");
+
+    this.MainMenuBg = this.add.sprite(sizeX / 2, sizeY / 2, 'MainMenuBg');
+
+    this.anims.create({
+      key: "MainMenu",
+      frames: this.anims.generateFrameNumbers('MainMenuBg', { start: 10, end: 470 }),
+      frameRate: 50,
+      repeat: -1
+    });
+    this.MainMenuBg.play("MainMenu");
 
 
 

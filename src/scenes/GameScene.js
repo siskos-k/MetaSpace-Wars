@@ -12,28 +12,29 @@ export default class GameScene extends Scene {
   constructor(config) {
     super({ key: 'GameScene' });
   }
- 
-  create () {
+
+  create() {
     let sizeX = this.game.canvas.width;
+
     let sizeY = this.game.canvas.height;
 
     var keyObj = this.input.keyboard.addKey('W');
     keyObj.on('up', () => this.scene.start("MainMenu"));
 
 
-    
+
     this.createText();
-      //BACKGROUND ANIMATED
-    this.backgound_animated = this.add.sprite(sizeX/2,sizeY/2, 'background_animated');
+    //BACKGROUND ANIMATED
+    this.backgound_animated = this.add.sprite(sizeX / 2, sizeY / 2, 'background_animated');
 
     this.anims.create({
       key: "background_anim",
-      frames: this.anims.generateFrameNumbers('background_animated', { start: 0, end: 47} ),
+      frames: this.anims.generateFrameNumbers('background_animated', { start: 1, end: 47 }),
       frameRate: 24,
       repeat: -1
     });
     this.backgound_animated.play("background_anim");
-    
+
     this.level = 1;
     this.sound.add('explosion');
     this.sound.add('shoot');
@@ -41,7 +42,7 @@ export default class GameScene extends Scene {
     this.cursors = this.input.keyboard.createCursorKeys();
 
     this.rocket = rocketFactory.create(this);
-    
+
     this.bullets = this.physics.add.group({
       maxSize: 1,
       classType: Bullet,
@@ -67,24 +68,24 @@ export default class GameScene extends Scene {
     this.scoreManager.print();
     this.state = STATE.RUN;
 
-    
+
   }
 
   createText() {
     const sizeY = this.game.canvas.height;
     const sizeX = this.game.canvas.width;
     const textConfig =
-      { fontSize: '44px',  fontFamily: 'Pixel', fill: "#ffffff" }; //text style
+      { fontSize: '44px', fontFamily: 'Pixel', fill: "#ffffff" }; //text style
 
     this.gameoverText = this.add.text(sizeX / 2, sizeY / 2 - 100,
       'GAME OVER', textConfig)
       .setVisible(false)
       .setDepth(1);
-      
+
     this.gameoverText.setOrigin(0.5);
 
     this.beginText = this.add.text(sizeX / 2, (sizeY / 2) - 60,
-     'PRESS ANY KEY FOR NEW GAME', textConfig)
+      'PRESS ANY KEY FOR NEW GAME', textConfig)
       .setVisible(false)
       .setDepth(1);
     this.beginText.setOrigin(0.5);
@@ -93,7 +94,7 @@ export default class GameScene extends Scene {
       'LEVEL COMPLETE', textConfig)
       .setVisible(false)
       .setDepth(1);
-      
+
     this.gameoverText.setOrigin(0.5);
     this.levelCompleteText.setOrigin(0.5);
   }
@@ -135,12 +136,12 @@ export default class GameScene extends Scene {
     }
   }
 
-  handleKey(e){
-    switch(this.state) {
+  handleKey(e) {
+    switch (this.state) {
       case STATE.RUN:
-        if(e.code == "Space" /* && !onCoolDown*/) {
-           this.fireBullet();
-           //startCoolDown
+        if (e.code == "Space" /* && !onCoolDown*/) {
+          this.fireBullet();
+          //startCoolDown
         }
         break;
       case STATE.READY:
@@ -152,7 +153,7 @@ export default class GameScene extends Scene {
   fireBullet() {
     const bullet = this.bullets.get();
     if (bullet) {
-      bullet.shoot(this.rocket.x-1, this.rocket.y-18);
+      bullet.shoot(this.rocket.x - 1, this.rocket.y - 18);
     }
   }
 
@@ -163,11 +164,12 @@ export default class GameScene extends Scene {
       this.scoreManager.point(); //+10
       if (this.alienManager.testAllAliensDead()) {
         this.levelCompleteText.setVisible(true);
-        this.time.addEvent({delay: 5000,
-        callback: function(){this.levelUp()},
-        callbackScope: this
+        this.time.addEvent({
+          delay: 5000,
+          callback: function () { this.levelUp() },
+          callbackScope: this
         })
-        
+
       }
     }
   }
@@ -192,7 +194,7 @@ export default class GameScene extends Scene {
   }
 
   restart() {
-    
+
     this.alienManager.restart(this.level);
   }
 
@@ -203,7 +205,7 @@ export default class GameScene extends Scene {
     this.time.removeAllEvents();
     this.alienManager.gameover();
     this.bullets.getChildren().forEach(
-      function(bullet) { bullet.deactivate(); }
+      function (bullet) { bullet.deactivate(); }
     );
     this.bombs.setVelocityX(0);
     this.bombs.setVelocityY(0);
@@ -212,7 +214,7 @@ export default class GameScene extends Scene {
 
     this.time.addEvent({
       delay: 3000,
-      callback: function() { this.ready(); },
+      callback: function () { this.ready(); },
       callbackScope: this
     });
   }
@@ -231,9 +233,9 @@ export default class GameScene extends Scene {
     this.beginText.setVisible(false);
     this.gameoverText.setVisible(false);
     this.bombs.getChildren().forEach(
-      function(bomb) { bomb.deactivate(); }
+      function (bomb) { bomb.deactivate(); }
     );
     this.restart();
-    
+
   }
 }
