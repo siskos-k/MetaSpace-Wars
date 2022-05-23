@@ -35,8 +35,11 @@ export default class MainMenu extends Scene {
     this.add.image(sizeX - sizeX / 2, sizeY - (sizeY * 3) / 4, "title");
 
     //Buttons
-    let buttonplay = this.add.image(sizeX - sizeX * 2 / 3, sizeY - sizeY / 2 + 50, "playButton").setInteractive();
-    let buttonshop = this.add.image(sizeX - sizeX * 2 / 3, sizeY - sizeY / 4, "shopButton").setInteractive();
+    let buttonplay = this.add.image(sizeX - sizeX * 3 / 4, sizeY - sizeY * 3 / 6, "playButton").setInteractive();
+    let leaderButton = this.add.image(sizeX - sizeX * 3 / 4, sizeY - sizeY * 2 / 6, "leaderboard")
+      .setInteractive();
+    leaderButton.setScale(0.75);
+    let buttonshop = this.add.image(sizeX - sizeX * 3 / 4, sizeY - sizeY / 6, "shopButton").setInteractive();
 
 
     buttonplay.setScale(0.7);
